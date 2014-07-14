@@ -1,4 +1,8 @@
 #GUIDE
 ------
 ### Build Product
-`grunt export`
+1. `npm install`
+
+2. `bower update`
+
+3. `grunt export` 
