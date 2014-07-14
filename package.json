@@ -2,7 +2,8 @@
   "name": "vclient",
   "version": "0.0.0",
   "dependencies": {
-    "grunt-docular": "^0.1.2"
+    "grunt-docular": "^0.1.2",
+    "karma": "^0.12.17"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
