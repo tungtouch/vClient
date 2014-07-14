@@ -15,8 +15,11 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
-  // Generates docular
+  // docular
   grunt.loadNpmTasks('grunt-docular');
+
+  //  Karma
+  grunt.loadNpmTasks('grunt-karma');
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -396,7 +399,7 @@ module.exports = function (grunt) {
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-    'karma'
+    'karma:unit'
   ]);
 
   grunt.registerTask('build', [
