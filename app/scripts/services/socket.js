@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('vClientApp.socket')
+angular.module('vClientApp.socket',[])
     .factory('$socket', function ($rootScope) {
         var socket = window.socketIo;
         return {
@@ -24,19 +24,3 @@ angular.module('vClientApp.socket')
             }
         };
     });
-
-    /*
-  .factory('socket', function () {
-    // Service logic
-    // ...
-
-    var meaningOfLife = 42;
-
-    // Public API here
-    return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
-    };
-  });
-*/

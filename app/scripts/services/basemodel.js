@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('vClientApp.baseModel',['vsoftApp.logger', 'vsoftApp.restful'])
+angular.module('vClientApp.baseModel',['vClientApp.logger', 'vClientApp.restful'])
     .factory('$baseModel', ['$resource', '$http', '$cookieStore', '$rootScope', '$logger', '$window', '$restful', function ($resource, $http, $cookieStore, $rootScope, $logger, $window, $restful) {
         $logger.moduleName = 'BaseModel Factory';
 
@@ -16,35 +16,7 @@ angular.module('vClientApp.baseModel',['vsoftApp.logger', 'vsoftApp.restful'])
             angular.extend(me, data);
         };
 
-        BaseModel.prototype.fetch = function () {
-            var me = this;
 
-            if (me.busy) {
-                return;
-            }
-            me.busy = true;
-
-            $restful.get({table: me.tableName, id: me.id}, function (resp) {
-                me.busy = false;
-
-                if (resp.success) {
-                    if (angular.isObject(window.data)) {
-                        angular.extend(me, window.data);
-
-                        if (me._id) {
-                            me.id = me._id;
-                        }
-                    } else {
-
-                    }
-                } else {
-                    //var errMsg = resp.message;
-                    //todo: send or broadcast errMsg to somewhere
-                }
-
-                $logger.debug('fetch', 'resp', resp);
-            });
-        };
 
         BaseModel.prototype.save = function (callback) {
             $logger.info('save model', 'start', true);

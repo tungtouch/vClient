@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('vClientApp.fetchData',['core.vsoft.logger', 'core.vsoft.restful', 'core.vsoft.BaseModel', 'ngCollection'])
+angular.module('vClientApp.fetchData',['vClientApp.logger', 'vClientApp.restful', 'vClientApp.baseModel'])
     .factory('$fetchData', ['$baseModel', '$restful', '$q', '$collection', '$logger', 'Datastorage', function ($baseModel, $restful, $q, $collection, $logger, Datastorage) {
 
         $logger.moduleName = 'Fetch Data Factory';
@@ -50,18 +50,3 @@ angular.module('vClientApp.fetchData',['core.vsoft.logger', 'core.vsoft.restful'
         return fetchData;
     }]);
 
-/*
-  .factory('fetchData', function () {
-    // Service logic
-    // ...
-
-    var meaningOfLife = 42;
-
-    // Public API here
-    return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
-    };
-  });
-*/

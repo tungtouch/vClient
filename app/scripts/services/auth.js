@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('vClientApp.auth',['vsoftApp.logger', 'vsoftApp.restful', 'LocalStorageModule', 'vsoftApp.fetchData'])
+angular.module('vClientApp.auth',['vClientApp.logger', 'vClientApp.restful', 'vClientApp.fetchData','vClientApp.config'])
     .factory('$auth', ['$resource', '$http', '$cookieStore', '$rootScope', 'localStorageService', '$logger', '$q', 'appConfig', '$fetchData', '$restful',
         function ($resource, $http, $cookieStore, $rootScope, localStorageService, $logger, $q, appConfig, $fetchData, $restful) {
 

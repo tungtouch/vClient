@@ -5,6 +5,7 @@ angular.module('vClientApp', [
     'ngResource',
     'ngSanitize',
     'ngRoute',
+    'vClientApp.config',
     'vClientApp.restful',
     'vClientApp.logger',
     'vClientApp.baseModel',
@@ -12,13 +13,6 @@ angular.module('vClientApp', [
     'vClientApp.socket',
     'vClientApp.auth'
 ])
-    .constant('appConfig', {
-        deviceId: (window.device) ? device.uuid.toLowerCase() : 'what.do.namehihi????',
-        defaultPass: 'defaultPassword',
-        name: 'iTaxi',
-        apiHost: 'http://nodejs.vn:1212', // taxigo.vn:9697
-        mediaHost: 'http://vsoft.vn:1235'
-    })
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {

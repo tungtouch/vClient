@@ -1,9 +1,8 @@
 'use strict';
 
-angular.module('vClientApp.restful', ['vsoftApp.logger'])
-    .service('$restful', ['$resource', 'appConfig', '$logger', function $restful($resource, appConfig, $logger) {
+angular.module('vClientApp.restful', ['vClientApp.logger','vClientApp.config'])
+    .service('$restful', ['$resource', 'appConfig', function $restful($resource, appConfig) {
 
-        $logger.moduleName = 'core.vsoft.restful - Restful Service';
 
         return $resource(appConfig.apiHost + '/:api/:table/:id', {
             api: 'api',

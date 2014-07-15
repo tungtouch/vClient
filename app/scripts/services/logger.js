@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('vClientApp.logger')
+angular.module('vClientApp.logger',[])
     .constant('loggerConfig', {
         disableLog: {
             info: false,
@@ -106,19 +106,3 @@ angular.module('vClientApp.logger')
             }
         };
     }]);
-
-/*
- .factory('$logger', function () {
- // Service logic
- // ...
-
- var meaningOfLife = 42;
-
- // Public API here
- return {
- someMethod: function () {
- return meaningOfLife;
- }
- };
- });
- */
