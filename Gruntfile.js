@@ -15,8 +15,8 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
-  // docular
-  grunt.loadNpmTasks('grunt-docular');
+  // ngdocs
+    grunt.loadNpmTasks('grunt-ngdocs');
 
   //  Karma
   grunt.loadNpmTasks('grunt-karma');
@@ -264,6 +264,36 @@ module.exports = function (grunt) {
         html: ['<%= yeoman.dist %>/*.html']
       }
     },
+
+    // ngDoc
+      ngdocs: {
+          options: {
+              dest: 'docs',
+              startPage: '/api',
+              title: "vClient",
+              image: "app/images/yeoman.png",
+              imageLink: "http://nodejs.vn",
+              titleLink: "/api",
+              bestMatch: true,
+              analytics: {
+                  account: 'UA-08150815-0',
+                  domainName: 'my-domain.com'
+              },
+              discussions: {
+                  shortName: 'TungTouch',
+                  url: 'http://vsoft.vn',
+                  dev: false
+              }
+          },
+          tutorial: {
+              src: ['app/content/tutorial/*.ngdoc'],
+              title: 'Tutorial'
+          },
+          api: {
+              src: ['app/scripts/**/*.js', '!app/scripts/**/*.spec.js'],
+              title: 'API Documentation'
+          }
+      },
 
     // Copies remaining files to places other tasks can use
     copy: {

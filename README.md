@@ -5,4 +5,8 @@
 
 2. `bower update`
 
-3. `grunt export` 
+3. Tạo Dev & Min 
+`grunt export` 
+
+4. Tạo Docs
+`grunt ngdocs`

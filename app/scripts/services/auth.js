@@ -1,16 +1,15 @@
 'use strict';
+/**
+ * @ngdoc service
+ * @name auth
+ * @description
+ *  Tổng quan về xác thực người dùng
+ */
 
-angular.module('vClientApp.auth',['vClientApp.logger', 'vClientApp.restful', 'vClientApp.fetchData','vClientApp.config'])
+angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'vClientApp.fetchData', 'vClientApp.config'])
     .factory('$auth', ['$resource', '$http', '$cookieStore', '$rootScope', 'localStorageService', '$logger', '$q', 'appConfig', '$fetchData', '$restful',
         function ($resource, $http, $cookieStore, $rootScope, localStorageService, $logger, $q, appConfig, $fetchData, $restful) {
 
-            /**
-             * setting for $logger Factory
-             *
-             * @param {string} moduleName Module Name
-             * @param {boolean} disableLog.info Enable or Disable info log
-             * @param {boolean} disableLog.error Enable or Disable error log
-             */
 
             $logger.moduleName = 'Auth Factory';
 
@@ -32,17 +31,38 @@ angular.module('vClientApp.auth',['vClientApp.logger', 'vClientApp.restful', 'vC
                 $logger.info('_clearHeaderToken', 'done', true);
             };
 
+            // Public API Here
             return {
                 pendingStateChange: null,
 
-
+                /**
+                 * @ngdoc service
+                 * @name auth.clearCurrentUser
+                 * @description
+                 * Xóa các user hiện tại
+                 *
+                 * @example
+                 * `$auth.clearCurrentUser();`
+                 * */
                 clearCurrentUser: function () {
                     this.clearUser();
-
                     $logger.info('clearCurrentUser', 'done', true);
                 },
 
-                setCurrentUser: function (user) {
+                /**
+                 * @ngdoc service
+                 * @name auth.setCurrentUser
+                 *
+                 * @description
+                 * thiết lập user hiện tại
+                 * @param {Function=} done callback function that will be called after the element has been
+                 *   inserted into the DOM
+                 * @param {DOMElement} element the element which will be inserted into the DOM
+                 * @example
+                 * `$auth.setCurrentUser(user);`
+                 * */
+
+                 setCurrentUser: function (user) {
                     user.nextState = 'nodejs.main.home';
 
                     this.setUser(user);
@@ -50,6 +70,21 @@ angular.module('vClientApp.auth',['vClientApp.logger', 'vClientApp.restful', 'vC
                     $logger.info('setCurrentUser', 'done', true);
                 },
 
+                /**
+                * @ngdoc service
+                 * @name auth.getCurrentUser
+                 * @param {Function=} TRUE trả về cái gì đấy
+                 *
+                 * @returns {object} Newly created cache object with the following set of methods:
+                 *
+                 * - `{object}` `info()` — Returns id, size, and options of cache.
+                 * - `{{*}}` `put({string} key, {*} value)` — Puts a new key-value pair into the cache and returns
+                 *   it.
+                 * - `{{*}}` `get({string} key)` — Returns cached value for `key` or undefined for cache miss.
+                 * - `{void}` `remove({string} key)` — Removes a key-value pair from the cache.
+                 * - `{void}` `removeAll()` — Removes all cached values.
+                 * - `{void}` `destroy()` — Removes references to this cache from $cacheFactory.
+                * */
                 getCurrentUser: function () {
                     var user = this.getUser();
                     var userRole = this.getUserRole();
@@ -84,7 +119,6 @@ angular.module('vClientApp.auth',['vClientApp.logger', 'vClientApp.restful', 'vC
                  */
 
                 setUser: function (user) {
-
                     localStorageService.set(_userKey, JSON.stringify(user));
 
                     //sessionStorage[_userKey] = JSON.stringify(user);
@@ -420,17 +454,17 @@ angular.module('vClientApp.auth',['vClientApp.logger', 'vClientApp.restful', 'vC
             };
         }]);
 /*
-  .factory('auth', function () {
-    // Service logic
-    // ...
+ .factory('auth', function () {
+ // Service logic
+ // ...
 
-    var meaningOfLife = 42;
+ var meaningOfLife = 42;
 
-    // Public API here
-    return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
-    };
-  });
-*/
+ // Public API here
+ return {
+ someMethod: function () {
+ return meaningOfLife;
+ }
+ };
+ });
+ */
