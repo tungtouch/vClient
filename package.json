@@ -2,12 +2,12 @@
   "name": "vclient",
   "version": "0.0.0",
   "dependencies": {
-    "grunt-docular": "^0.1.2",
     "karma": "^0.12.17"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",
+    "grunt-docular": "^0.1.2",
     "grunt-bower-install": "~0.7.0",
     "grunt-concurrent": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
