@@ -11,12 +11,14 @@ angular.module('vClientApp', [
     'vClientApp.baseModel',
     'vClientApp.fetchData',
     'vClientApp.socket',
-    'vClientApp.auth'
+    'vClientApp.auth',
+    'ngCollection'
 ])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/main.html'
+                templateUrl: 'views/main.html',
+                controller : 'MainCtrl'
             })
             .otherwise({
                 redirectTo: '/'

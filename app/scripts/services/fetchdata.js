@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('vClientApp.fetchData',['vClientApp.logger', 'vClientApp.restful', 'vClientApp.baseModel'])
-    .factory('$fetchData', ['$baseModel', '$restful', '$q', '$collection', '$logger', 'Datastorage', function ($baseModel, $restful, $q, $collection, $logger, Datastorage) {
+    .factory('$fetchData', ['$baseModel', '$restful', '$q', '$collection', '$logger', function ($baseModel, $restful, $q, $collection, $logger) {
 
         $logger.moduleName = 'Fetch Data Factory';
 
