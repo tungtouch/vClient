@@ -8,13 +8,6 @@
  */
 
 angular.module('vClientApp.logger', [])
-    .constant('loggerConfig', {
-        disableLog: {
-            info: false,
-            error: false,
-            debug: false
-        }
-    })
     .factory('$logger', ['loggerConfig', function (loggerConfig) {
 
 

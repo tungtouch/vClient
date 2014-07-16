@@ -35,16 +35,6 @@ angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'v
             return {
                 pendingStateChange: null,
 
-                /**
-                 * @ngdoc service
-                 * @name auth.clearCurrentUser
-                 * @description
-                 * Xóa người dùng đăng nhập hiện tại
-                 * @example
-                 * ```
-                 $auth.clearCurrentUser();
-                 ```
-                 * */
                 clearCurrentUser: function () {
                     this.clearUser();
                     $logger.info('clearCurrentUser', 'done', true);
