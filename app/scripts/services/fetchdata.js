@@ -1,6 +1,13 @@
 'use strict';
 
-angular.module('vClientApp.fetchData',['vClientApp.logger', 'vClientApp.restful', 'vClientApp.baseModel'])
+/**
+ * @ngdoc service
+ * @name fetchData
+ * @description
+ * $fetchData dùng để lấy dữ liệu,Mỗi dữ liệu được trả về là 1 thuộc tính BaseModel (đối tượng này sẽ có đầy đủ các phương thức save,update,delete,create khi truy vấn)
+ */
+
+angular.module('vClientApp.fetchData', ['vClientApp.logger', 'vClientApp.restful', 'vClientApp.baseModel'])
     .factory('$fetchData', ['$baseModel', '$restful', '$q', '$collection', '$logger', function ($baseModel, $restful, $q, $collection, $logger) {
 
         $logger.moduleName = 'Fetch Data Factory';
@@ -8,8 +15,28 @@ angular.module('vClientApp.fetchData',['vClientApp.logger', 'vClientApp.restful'
 
         var fetchData;
 
+
+
+        /**
+         *@ngdoc service
+         *@name fetchData.getData
+         *
+         *@description
+         *Lấy dữ liệu từ service
+         *
+         *@param {String} TableName tên bảng cần lấy dữ liệu
+         *@param {number} Start Lấy phần tử từ vị trí || để null mặc định 0
+         *@param {number} Limit tối đa phần tử được lấy || để null mặc định 1000
+         *@param {Array}  Filters Lọc theo điều kiện || null
+         *@param {Array}  Sorters Sắp xếp || null
+         *@example
+         * `var sorters = [{property: 'startAt', direction: 'DESC'}];`
+         */
+
         fetchData = {
             getData: function (tableName, start, limit, filters, sorters) {
+
+
 
                 var _start, _limit, _filters, _sorters;
 

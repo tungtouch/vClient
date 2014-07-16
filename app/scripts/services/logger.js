@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ * @ngdoc service
+ * @name $logger
+ * @description
+ * Làm việc với log của hệ thống,thay cho console.log của javascript các level log cũng như của console
+ */
+
 angular.module('vClientApp.logger',[])
     .constant('loggerConfig', {
         disableLog: {
@@ -9,13 +16,8 @@ angular.module('vClientApp.logger',[])
         }
     })
     .factory('$logger', ['loggerConfig', function (loggerConfig) {
-        /**
-         * logger Factory
-         *
-         * @param {String} moduleName name of the module which will be logged
-         * @param {boolean} disableLoginfo disable the info log or not
-         * @param {boolean} disableLogerror disable the error log or not
-         */
+
+
 
         var _stringify = function (args) {
             var msg = '';
@@ -70,11 +72,15 @@ angular.module('vClientApp.logger',[])
             functionName: {info: 'info', error: 'error', debug: 'debug'},
 
             /**
+             * @ngdoc service
+             * @name $logger.info
+             *
+             * @description
              * log the messages into Info logging
              *
-             * @param {String} functionName name of the function need to log
-             * @param {String} displayParam the param need to display
-             * @param {Array} theValues the values that need to display
+             * @param {String} functionName tên function mà bạn cần log
+             * @param {String} displayParam Tên tham số bạn cần log
+             * @param {Array/Object/String}  Values  trị hiện thị của tham số đó
              */
             info: function () {
                 var args = Array.prototype.slice.call(arguments, 0);
@@ -82,11 +88,15 @@ angular.module('vClientApp.logger',[])
             },
 
             /**
+             * @ngdoc service
+             * @name $logger.error
+             *
+             * @description
              * log the messages into Error logging
              *
-             * @param {String} functionName name of the function need to log
-             * @param {String} displayParam the param need to display
-             * @param {Array} theValues the values that need to display
+             * @param {String} functionName tên function mà bạn cần log
+             * @param {String} displayParam Tên tham số bạn cần log
+             * @param {Array/Object/String} Values Giá trị hiện thị của tham số đó
              */
             error: function () {
                 var args = Array.prototype.slice.call(arguments, 0);
@@ -94,11 +104,15 @@ angular.module('vClientApp.logger',[])
             },
 
             /**
-             * log the messages into Error logging
+             * @ngdoc service
+             * @name $logger.debug
              *
-             * @param {String} functionName name of the function need to log
-             * @param {String} displayParam the param need to display
-             * @param {Array} theValues the values that need to display
+             * @description
+             * log the messages into debug logging
+             *
+             * @param {String} functionName tên function mà bạn cần log
+             * @param {String} displayParam Tên tham số bạn cần log
+             * @param {Array/Object/String}  Values  trị hiện thị của tham số đó
              */
             debug: function () {
                 var args = Array.prototype.slice.call(arguments, 0);
