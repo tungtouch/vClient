@@ -33,13 +33,12 @@ angular.module('vClientApp.fetchData', ['vClientApp.logger', 'vClientApp.restful
          * @example
          *
          * ```
-         $fetchData.getData('users', null, null, null, null).then(function (resp) {`
-              if (resp.success) {
-                    console.log('data Users : '), resp.all();`
-              } else {
-                    console.log('err : ', resp);`
-              }
-          })
+         $fetchData.getData('users', null, null, null, null).then(function (resp) {
+                console.log('data Users : '), resp.all();
+
+             }, function (err) {
+                console.log('err : ', err);
+         })
          *
          * ```
          */

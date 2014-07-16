@@ -17,10 +17,10 @@ angular.module('vClientApp')
 
         console.log('appConfig : ', appConfig.apiHost);
         $fetchData.getData('users', null, null, null, null).then(function (resp) {
-            if (resp.success) {
-                console.log('data Users : '), resp.all();
-            } else {
-                console.log('err : ', resp);
-            }
+
+            console.log('data Users : '), resp.all();
+
+        }, function (err) {
+            console.log('err : ', err);
         })
     }]);
