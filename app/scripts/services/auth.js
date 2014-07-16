@@ -39,30 +39,18 @@ angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'v
                  * @ngdoc service
                  * @name auth.clearCurrentUser
                  * @description
-                 * Xóa các user hiện tại
-                 *
+                 * Xóa người dùng đăng nhập hiện tại
                  * @example
-                 * `$auth.clearCurrentUser();`
+                 * ```
+                 $auth.clearCurrentUser();
+                 ```
                  * */
                 clearCurrentUser: function () {
                     this.clearUser();
                     $logger.info('clearCurrentUser', 'done', true);
                 },
 
-                /**
-                 * @ngdoc service
-                 * @name auth.setCurrentUser
-                 *
-                 * @description
-                 * thiết lập user hiện tại
-                 * @param {Function=} done callback function that will be called after the element has been
-                 *   inserted into the DOM
-                 * @param {DOMElement} element the element which will be inserted into the DOM
-                 * @example
-                 * `$auth.setCurrentUser(user);`
-                 * */
-
-                 setCurrentUser: function (user) {
+                setCurrentUser: function (user) {
                     user.nextState = 'nodejs.main.home';
 
                     this.setUser(user);
@@ -71,11 +59,14 @@ angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'v
                 },
 
                 /**
-                * @ngdoc service
+                 * @ngdoc service
                  * @name auth.getCurrentUser
-                 * @param {Function} value trả về User hiện tại
+                 * @example
+                 * ```
+                 $auth.getCurrentUser()
+                 * ```
                  *
-                * */
+                 * */
                 getCurrentUser: function () {
                     var user = this.getUser();
                     var userRole = this.getUserRole();
@@ -298,9 +289,11 @@ angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'v
                  *
                  * @description
                  * Lấy thông tin user theo ID
-                 *
+                 * @param {String} id ID của user cần lấy
                  * @example
-                 * `$auth.getUserInfoById(5128182120012006212);`
+                 * ```
+                 $auth.getUserInfoById('5128182120012006212');
+                 ```
                  * */
 
                 getUserInfoById: function (id, cb) {
@@ -400,7 +393,9 @@ angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'v
                  * Lấy thông tin ID của user
                  *
                  * @example
-                 * `$auth.getUserId();`
+                 * ```
+                 $auth.getUserId();
+                 *```
                  * */
                 getUserId: function () {
                     var user = this.getUser();
@@ -418,10 +413,12 @@ angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'v
                  * Lấy thông tin tên của user
                  *
                  * @example
-                 * `$auth.getUserName();`
+                 * ```
+                 $auth.getUserName();
+                 * ```
                  * */
 
-                 getUserName: function () {
+                getUserName: function () {
                     var user = this.getUser();
 
                     if (!!user) {
@@ -437,7 +434,9 @@ angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'v
                  * Lấy thông tin tên đầy đủ của user
                  *
                  * @example
-                 * `$auth.getUserFullName();`
+                 * ```
+                    $auth.getUserFullName();
+                 * ```
                  * */
                 getUserFullName: function () {
                     var user = this.getUser();
@@ -455,10 +454,12 @@ angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'v
                  * Lấy role của User
                  *
                  * @example
-                 * `$auth.getUserRole();`
+                 * ```
+                 $auth.getUserRole();
+                 *```
                  * */
 
-                 getUserRole: function () {
+                getUserRole: function () {
                     var user = this.getUser();
 
                     if (!!user) {
@@ -494,6 +495,15 @@ angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'v
                  *
                  * @description
                  * Trạng thái của login
+                 * @returns {boolean} lấy thông tin
+                 *
+                 * - `{object}` `info()` — Returns id, size, and options of cache.
+                 * - `{{*}}` `put({string} key, {*} value)` — Puts a new key-value pair into the cache and returns
+                 *   it.
+                 * - `{{*}}` `get({string} key)` — Returns cached value for `key` or undefined for cache miss.
+                 * - `{void}` `remove({string} key)` — Removes a key-value pair from the cache.
+                 * - `{void}` `removeAll()` — Removes all cached values.
+                 * - `{void}` `destroy()` — Removes references to this cache from $cacheFactory.
                  *
                  * @example
                  * `$auth.isLogin();`
@@ -506,18 +516,3 @@ angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'v
 
             };
         }]);
-/*
- .factory('auth', function () {
- // Service logic
- // ...
-
- var meaningOfLife = 42;
-
- // Public API here
- return {
- someMethod: function () {
- return meaningOfLife;
- }
- };
- });
- */

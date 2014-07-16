@@ -16,7 +16,6 @@ angular.module('vClientApp.fetchData', ['vClientApp.logger', 'vClientApp.restful
         var fetchData;
 
 
-
         /**
          *@ngdoc service
          *@name fetchData.getData
@@ -31,11 +30,22 @@ angular.module('vClientApp.fetchData', ['vClientApp.logger', 'vClientApp.restful
          *@param {Array}  Sorters Sắp xếp || null
          *@example
          * `var sorters = [{property: 'startAt', direction: 'DESC'}];`
+         * @example
+         *
+         * ```
+         $fetchData.getData('users', null, null, null, null).then(function (resp) {`
+              if (resp.success) {
+                    console.log('data Users : '), resp.all();`
+              } else {
+                    console.log('err : ', resp);`
+              }
+          })
+         *
+         * ```
          */
 
         fetchData = {
             getData: function (tableName, start, limit, filters, sorters) {
-
 
 
                 var _start, _limit, _filters, _sorters;

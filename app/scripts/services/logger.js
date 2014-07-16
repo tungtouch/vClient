@@ -7,7 +7,7 @@
  * Làm việc với log của hệ thống,thay cho console.log của javascript các level log cũng như của console
  */
 
-angular.module('vClientApp.logger',[])
+angular.module('vClientApp.logger', [])
     .constant('loggerConfig', {
         disableLog: {
             info: false,
@@ -16,7 +16,6 @@ angular.module('vClientApp.logger',[])
         }
     })
     .factory('$logger', ['loggerConfig', function (loggerConfig) {
-
 
 
         var _stringify = function (args) {
@@ -81,6 +80,10 @@ angular.module('vClientApp.logger',[])
              * @param {String} functionName tên function mà bạn cần log
              * @param {String} displayParam Tên tham số bạn cần log
              * @param {Array/Object/String}  Values  trị hiện thị của tham số đó
+             * @example
+             * ```
+             $logger.info('App controller','LoadData',data)
+             * ```
              */
             info: function () {
                 var args = Array.prototype.slice.call(arguments, 0);
@@ -97,6 +100,10 @@ angular.module('vClientApp.logger',[])
              * @param {String} functionName tên function mà bạn cần log
              * @param {String} displayParam Tên tham số bạn cần log
              * @param {Array/Object/String} Values Giá trị hiện thị của tham số đó
+             * @example
+             * ```
+             $logger.error('App controller','LoadData',err);
+             * ```
              */
             error: function () {
                 var args = Array.prototype.slice.call(arguments, 0);
@@ -113,6 +120,10 @@ angular.module('vClientApp.logger',[])
              * @param {String} functionName tên function mà bạn cần log
              * @param {String} displayParam Tên tham số bạn cần log
              * @param {Array/Object/String}  Values  trị hiện thị của tham số đó
+             * @example
+             * ```
+                $logger.debug('App controller','LoadData',debug);
+             *```
              */
             debug: function () {
                 var args = Array.prototype.slice.call(arguments, 0);
