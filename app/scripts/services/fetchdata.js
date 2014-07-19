@@ -8,7 +8,7 @@
  */
 
 angular.module('vClientApp.fetchData', ['vClientApp.logger', 'vClientApp.restful', 'vClientApp.baseModel'])
-    .factory('$fetchData', ['$baseModel', '$restful', '$q', '$collection', '$logger', function ($baseModel, $restful, $q, $collection, $logger) {
+    .factory('$fetchData', ['$baseModel', '$restful', '$q', '$collection', '$logger', 'dataStorage', function ($baseModel, $restful, $q, $collection, $logger, dataStorage) {
 
         $logger.moduleName = 'Fetch Data Factory';
 
@@ -64,29 +64,32 @@ angular.module('vClientApp.fetchData', ['vClientApp.logger', 'vClientApp.restful
             }, function (err) {
                 console.log('err : ', err);
             })
-
-         * ```
-         * Example lấy dữ liệu theo 1 ID
-         * Lấy ID từ url theo ui- router
-         * ```
-         var userId = $stateParams.id;
-         * ```
-         * Tạo 1 function truyền ID :
-         * ```
-         var loadDrivingDetail = function (userId) {
-                $restful.get({table: 'drivers', id: userId}, function (resp) {
-                     if (resp.success) {
-                        $scope.data = resp.data[0];
-                        console.log('Data :', resp.data[0]);
-
-                    } else {
-                        console.log(resp);
-                    }
-             })
-         };
-         loadDrivingDetail();
-         * ```
+         ```
          */
+
+
+        /**
+         *@ngdoc service
+         *@name fetchData.getDataId
+         *
+         *@description
+         *Lấy dữ liệu từ service
+         *
+         *@param {String} TableName tên bảng cần lấy dữ liệu
+         *@param {String} Id của đối tượng cần lấy
+         *@param {String} NameStogare dataStorage truyền vào || null (để null sẽ lấy từ server)
+         *@example
+         *```
+         $fetchData.getDataId('UserAuths', '5397ca5dc0c8174642000001').then(function(resp){
+                console.log('data : ',resp);
+                },function(err){
+                console.log('err :',err);
+         });
+         *```
+         *
+         */
+
+
         fetchData = {
             getData: function (tableName, start, limit, filters, sorters) {
 
@@ -124,6 +127,22 @@ angular.module('vClientApp.fetchData', ['vClientApp.logger', 'vClientApp.restful
                     defer.reject(err);
                 });
 
+                return defer.promise;
+            },
+            getDataId: function (tableName, id, dataCollection) {
+                var defer = $q.defer();
+                if (dataCollection && dataStorage[dataCollection].get(id)) {
+                    defer.resolve(dataStorage[dataCollection].get(id));
+                    $logger.info('', 'Get data from Storage', dataStorage[dataCollection].get(id));
+                } else {
+                    $restful.get({table: tableName, id: id}, function (resp) {
+                        var data = new $baseModel(tableName, resp.data);
+                        defer.resolve(data);
+                        $logger.info('', 'Get data from server', data);
+                    }, function (err) {
+                        defer.reject(err);
+                    })
+                }
                 return defer.promise;
             }
         };

@@ -7,8 +7,9 @@
  * Làm việc với log của hệ thống,thay cho console.log của javascript các level log cũng như của console
  */
 
-angular.module('vClientApp.logger', [])
-    .factory('$logger', ['loggerConfig', function (loggerConfig) {
+angular.module('vClientApp.logger', ['vClientApp.config'])
+
+    .factory('$logger', ['appConfig', function (appConfig) {
 
 
         var _stringify = function (args) {
@@ -37,7 +38,7 @@ angular.module('vClientApp.logger', [])
         };
 
         var _log = function (logLevel, args) {
-            if (loggerConfig.disableLog[logLevel]) {
+            if (appConfig.disableLog[logLevel]) {
                 return false;
             }
 
@@ -115,7 +116,7 @@ angular.module('vClientApp.logger', [])
              * @param {Array/Object/String}  Values  trị hiện thị của tham số đó
              * @example
              * ```
-                $logger.debug('App controller','LoadData',debug);
+             $logger.debug('App controller','LoadData',debug);
              *```
              */
             debug: function () {

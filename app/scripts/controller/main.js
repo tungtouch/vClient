@@ -13,14 +13,16 @@
  */
 
 angular.module('vClientApp')
-    .controller('MainCtrl', ['$scope', 'appConfig', '$fetchData', function ($scope, appConfig, $fetchData) {
+    .controller('MainCtrl', ['$scope', 'appConfig', '$fetchData', 'dataStorage', function ($scope, appConfig, $fetchData, dataStorage) {
 
         console.log('appConfig : ', appConfig.apiHost);
-        $fetchData.getData('users', null, null, null, null).then(function (resp) {
 
-            console.log('data Users : '), resp.all();
-
-        }, function (err) {
-            console.log('err : ', err);
-        })
+        $scope.click = function () {
+            var _id = '5397ca5dc0c8174642000001';
+            $fetchData.getDataId('UserAuths', _id).then(function(resp){
+                console.log('data : ',resp.email);
+            },function(err){
+                console.log('err :',err);
+            });
+        };
     }]);

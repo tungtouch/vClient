@@ -25,14 +25,19 @@
 
 angular.module('vClientApp.config', [])
     .constant('appConfig', {
-        deviceId: (window.device) ? device.uuid.toLowerCase() : 'notDeviced',
+        deviceId: (window.device) ? device.uuid.toLowerCase() : 'null',
         defaultPass: '',
         name: 'iTaxi',
-        apiHost: 'http://itaxi.vn:6969',
+        apiHost: 'http://localhost:1212',
         mediaHost: 'http://itaxi.vn:6969',
         disableLog: {
             info: false,
             error: false,
             debug: false
         }
-    })
+    }).
+    service('dataStorage', ['$collection', function ($collection) {
+        return {
+            Users: $collection.getInstance()
+        };
+    }]);
