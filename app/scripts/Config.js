@@ -67,7 +67,6 @@
  * ```
  */
 
-
 angular.module('vClientApp.config', [])
     .constant('appConfig', {
         deviceId: (window.device) ? device.uuid.toLowerCase() : 'null',

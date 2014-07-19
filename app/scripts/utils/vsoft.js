@@ -5,6 +5,15 @@
  * @description
  *  Tổng quan về xác thực người dùng
  */
+angular.module('vFramework', [
+    'vClientApp.config',
+    'vClientApp.restful',
+    'vClientApp.logger',
+    'vClientApp.baseModel',
+    'vClientApp.fetchData',
+    'vClientApp.socket',
+    'vClientApp.auth'
+]);
 
 angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'vClientApp.fetchData', 'vClientApp.config'])
     .factory('$auth', ['$resource', '$http', '$cookieStore', '$rootScope', 'localStorageService', '$logger', '$q', 'appConfig', '$fetchData', '$restful',

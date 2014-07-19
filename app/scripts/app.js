@@ -5,13 +5,7 @@ angular.module('vClientApp', [
     'ngResource',
     'ngSanitize',
     'ngRoute',
-    'vClientApp.config',
-    'vClientApp.restful',
-    'vClientApp.logger',
-    'vClientApp.baseModel',
-    'vClientApp.fetchData',
-    'vClientApp.socket',
-    'vClientApp.auth',
+    'vFramework',
     'ngCollection'
 ])
     .config(function ($routeProvider) {
@@ -27,11 +21,10 @@ angular.module('vClientApp', [
 
         $fetchData.getData('UserAuths', null, null, null, null).then(function (resp) {
             dataStorage.Users.addAll(resp.all());
-            console.log('dataStorage.Users :',dataStorage.Users.all());
+            console.log('dataStorage.Users :', dataStorage.Users.all());
         }, function (err) {
             console.log('err : ', err);
         });
-
 
 
     }])
