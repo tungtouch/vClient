@@ -19,6 +19,9 @@
             error: false, // false : Hiển thị
             debug: false
     }
+ loginRouteServer: {String}, // server node.js route /login
+ logoutRouterServer: {String},// server node.js route /logout
+ loginTableName: {String} // table name login users
  * ```
  */
 
@@ -30,11 +33,17 @@ angular.module('vClientApp.config', [])
         name: 'iTaxi',
         apiHost: 'http://localhost:1212',
         mediaHost: 'http://itaxi.vn:6969',
+
+        // Làm việc với Logger
         disableLog: {
             info: false,
             error: false,
             debug: false
-        }
+        },
+        // Làm việc với Auth
+        loginRouteServer: '/login',
+        logoutRouterServer: '/logout',
+        loginTableName: 'Users'
     }).
     service('dataStorage', ['$collection', function ($collection) {
         return {

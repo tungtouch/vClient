@@ -131,17 +131,26 @@ angular.module('vClientApp.fetchData', ['vClientApp.logger', 'vClientApp.restful
             },
             getDataId: function (tableName, id, dataCollection) {
                 var defer = $q.defer();
-                if (dataCollection && dataStorage[dataCollection].get(id)) {
-                    defer.resolve(dataStorage[dataCollection].get(id));
-                    $logger.info('', 'Get data from Storage', dataStorage[dataCollection].get(id));
+                if (!angular.isString(tableName) || !angular.isString(id)) {
+                    defer.reject('tableName or id required String');
                 } else {
-                    $restful.get({table: tableName, id: id}, function (resp) {
-                        var data = new $baseModel(tableName, resp.data);
-                        defer.resolve(data);
-                        $logger.info('', 'Get data from server', data);
-                    }, function (err) {
-                        defer.reject(err);
-                    })
+
+                    if (dataCollection && !angular.isUndefined(dataStorage[dataCollection])) {
+                        defer.resolve(dataStorage[dataCollection].get(id));
+                        $logger.info('', 'Get data from Storage', dataStorage[dataCollection].get(id));
+                    } else {
+                        if (dataCollection) {
+                            console.log('Name', dataCollection + ' Storage false');
+                        }
+                        $restful.get({table: tableName, id: id}, function (resp) {
+                            var data = new $baseModel(tableName, resp.data);
+                            defer.resolve(data);
+                            $logger.info('', 'Get data from server', data);
+                        }, function (err) {
+                            defer.reject(err);
+                        })
+                    }
+
                 }
                 return defer.promise;
             }

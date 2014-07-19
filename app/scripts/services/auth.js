@@ -288,7 +288,7 @@ angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'v
 
                 getUserInfoById: function (id, cb) {
 
-                    $restful.get({table: 'Users', id: id}, function (resp) {
+                    $restful.get({table: appConfig.loginTableName, id: id}, function (resp) {
                         if (resp.success) {
                             cb(null, resp.data);
                         } else {
@@ -305,7 +305,7 @@ angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'v
                         {
                             'method': 'POST',
                             'data': {'username': username, 'password': password},
-                            'url': appConfig.apiHost + '/login'
+                            'url': appConfig.apiHost + appConfig.loginRouteServer
                         })
                         .success(function (data) { //.success(function(data, status, headers, config)
                             $logger.info('login', 'success', true);
@@ -338,7 +338,7 @@ angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'v
                     $http(
                         {
                             'method': 'POST',
-                            'url': appConfig.apiHost + '/logout'
+                            'url': appConfig.apiHost + appConfig.logoutRouterServer
                         })
                         .success(function (data) {
                             $logger.info('logout', 'success', true);
@@ -425,7 +425,7 @@ angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'v
                  *
                  * @example
                  * ```
-                    $auth.getUserFullName();
+                 $auth.getUserFullName();
                  * ```
                  * */
                 getUserFullName: function () {
