@@ -135,12 +135,12 @@ angular.module('vClientApp.fetchData', ['vClientApp.logger', 'vClientApp.restful
                     defer.reject('tableName or id required String');
                 } else {
 
-                    if (dataCollection && !angular.isUndefined(dataStorage[dataCollection])) {
+                    if (dataCollection && !angular.isUndefined(dataStorage[dataCollection]) && dataStorage[dataCollection].size() > 0) {
                         defer.resolve(dataStorage[dataCollection].get(id));
                         $logger.info('', 'Get data from Storage', dataStorage[dataCollection].get(id));
                     } else {
                         if (dataCollection) {
-                            console.log('Name', dataCollection + ' Storage false');
+                            console.log('Name', dataCollection + ' Storage false or Storage null');
                         }
                         $restful.get({table: tableName, id: id}, function (resp) {
                             var data = new $baseModel(tableName, resp.data);

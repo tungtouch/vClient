@@ -69,7 +69,7 @@ angular.module('vClientApp.logger', ['vClientApp.config'])
              * @name $logger.info
              *
              * @description
-             * log the messages into Info logging
+             * Hiển thị các thông tin logger info (Tắt chức năng logger xem ở Config)
              *
              * @param {String} functionName tên function mà bạn cần log
              * @param {String} displayParam Tên tham số bạn cần log
@@ -89,7 +89,7 @@ angular.module('vClientApp.logger', ['vClientApp.config'])
              * @name $logger.error
              *
              * @description
-             * log the messages into Error logging
+             * Hiển thị thông tin logger lỗi (Tắt chức năng logger xem ở Config)
              *
              * @param {String} functionName tên function mà bạn cần log
              * @param {String} displayParam Tên tham số bạn cần log
@@ -109,7 +109,7 @@ angular.module('vClientApp.logger', ['vClientApp.config'])
              * @name $logger.debug
              *
              * @description
-             * log the messages into debug logging
+             * Hiển thị thông tin logger debug (Tắt chức năng logger xem ở Config)
              *
              * @param {String} functionName tên function mà bạn cần log
              * @param {String} displayParam Tên tham số bạn cần log

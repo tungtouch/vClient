@@ -1,26 +1,109 @@
-'use strict';
 /**
- * Directly from fnakstad
- * https://github.com/fnakstad/angular-client-side-auth/blob/master/client/js/routingConfig.js
+ * Created by taipham.it on 7/15/2014.
  */
+
+
+/**
+ * @ngdoc service
+ * @name appConfig
+ * @description
+ * Làm việc cấu hình hệ thống
+ * @example
+ * ```
+ deviceID : {String}  mã ID của thiết bị //
+ defaultPass : {String}  pass của thiết bị || null
+ apiHost : {String}  địa chỉ hosting // apiHost : 'http://itaxi.vn'
+ mediaHost : {String}  địa chỉ media hosting
+ disableLog: {
+            info: true, // true : tắt chức năng logger.info
+            error: false, // false : Hiển thị
+            debug: false
+    }
+ loginRouteServer: {String}, // server node.js route /login
+ logoutRouterServer: {String},// server node.js route /logout
+ loginTableName: {String} // table name login users
+ * ```
+ *# Cấu hình roles :
+ *
+ *
+ *###Xây dựng danh sách tất các các Roles bạn sử dụng trong App :
+ *
+ * ```
+ roles: [
+     'anon',
+     'user'
+ ]
+ * ```
+ *
+ *
+ *###Thiết lập tất cả các quyền truy cập mà bạn định ngĩa theo từng cấp độ sử dụng :
+ *
+ * ```
+ accessLevels: {
+      'anon': ['anon'],
+      'user': ['user']
+ }
+ * ```
+ * ### Export roles :
+ * ```
+ exports.userCan =
+     {
+         accessUser: exports.accessLevels.user // Export 1 roles 'user'
+     };
+ * ```
+ * File app.js khai báo trong State quyền truy cập cao nhất mà roles đó có thể thực hiện
+ *```
+ accessLevel: window.userCan.accessUser
+ *```
+ * ####Ví dụ :
+ * ```
+ .state('main.home', {
+                url: "",
+                templateUrl: 'views/states/home.html',
+                controller: 'homeCtrl',
+                accessLevel: window.userCan.accessUser // Quyền User sẽ được truy cập
+            })
+ * ```
+ */
+
+
+angular.module('vClientApp.config', [])
+    .constant('appConfig', {
+        deviceId: (window.device) ? device.uuid.toLowerCase() : 'null',
+        defaultPass: '',
+        name: 'iTaxi',
+        apiHost: 'http://localhost:1212',
+        mediaHost: 'http://itaxi.vn:6969',
+
+        // Làm việc với Logger
+        disableLog: {
+            info: false,
+            error: false,
+            debug: false
+        },
+        // Làm việc với Auth
+        loginRouteServer: '/login',
+        logoutRouterServer: '/logout',
+        loginTableName: 'Users'
+    }).
+    service('dataStorage', ['$collection', function ($collection) {
+        return {
+            Users: $collection.getInstance()
+        };
+    }]);
+
+// cấu hình Roles :
+
 
 (function (exports) {
 
     var config = {
 
-        /* List all the roles you wish to use in the app
-         * You have a max of 31 before the bit shift pushes the accompanying integer out of
-         * the memory footprint for an integer
-         */
         roles: [
             'anon',
             'user'
         ],
 
-        /*
-         Build out all the access levels you want referencing the roles listed above
-         You can use the "*" symbol to represent access to all roles
-         */
         accessLevels: {
             'anon': ['anon'],
             'user': ['user']
@@ -34,7 +117,6 @@
      roles array parameter
      */
     function buildRoles(roles) {
-
         var bitMask = '01';
         var userRoles = {};
 
@@ -106,7 +188,7 @@
 
     exports.userCan =
     {
-        accessUser : exports.accessLevels.user
+        accessUser: exports.accessLevels.user
     };
 
 })(typeof exports === 'undefined' ? window : exports);
