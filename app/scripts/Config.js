@@ -21,6 +21,7 @@
     }
  loginRouteServer: {String}, // server node.js route /login
  logoutRouterServer: {String},// server node.js route /logout
+ registerRouterServer: {String},// server node.js route /register
  loginTableName: {String} // table name login users
  * ```
  *# Cấu hình roles :
@@ -84,6 +85,7 @@ angular.module('vClientApp.config', [])
         // Làm việc với Auth
         loginRouteServer: '/login',
         logoutRouterServer: '/logout',
+        registerRouterServer : '/register',
         loginTableName: 'Users'
     }).
     service('dataStorage', ['$collection', function ($collection) {

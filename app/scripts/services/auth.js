@@ -250,19 +250,19 @@ angular.module('vClientApp.auth', ['vClientApp.logger', 'vClientApp.restful', 'v
                 },
                 register: function (data, cb) {
                     var me = this;
-                    var registerData = {
+                  /*  var registerData = {
                         username: data.username,
                         password: data.password,
                         email: data.email,
                         sex: data.sex,
                         firstname: data.firstname,
                         lastname: data.lastname
-                    };
+                    };*/
                     $http(
                         {
                             'method': 'POST',
-                            'data': registerData,
-                            'url': appConfig.apiHost + '/register'
+                            'data': data, // registerData
+                            'url': appConfig.apiHost + appConfig.registerRouterServer
                         })
                         .success(function (data) {
                             /*console.log('data', data);*/
