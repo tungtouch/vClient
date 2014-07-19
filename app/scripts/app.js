@@ -24,7 +24,7 @@ angular.module('vClientApp', [
                 redirectTo: '/'
             });
     }).run(['$rootScope', '$fetchData', 'dataStorage', function ($rootScope, $fetchData, dataStorage) {
-        console.log('$rootScop :');
+
         $fetchData.getData('UserAuths', null, null, null, null).then(function (resp) {
             dataStorage.Users.addAll(resp.all());
             console.log('dataStorage.Users :',dataStorage.Users.all());
