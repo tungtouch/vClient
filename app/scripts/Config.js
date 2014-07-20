@@ -31,8 +31,8 @@
  *
  * ```
  roles: [
-     'anon',
-     'user'
+ 'anon',
+ 'user'
  ]
  * ```
  *
@@ -48,9 +48,9 @@
  * ### Export roles :
  * ```
  exports.userCan =
-     {
-         accessUser: exports.accessLevels.user // Export 1 roles 'user'
-     };
+ {
+     accessUser: exports.accessLevels.user // Export 1 roles 'user'
+ };
  * ```
  * File app.js khai báo trong State quyền truy cập cao nhất mà roles đó có thể thực hiện
  *```
@@ -77,14 +77,14 @@ angular.module('vClientApp.config', [])
 
         // Làm việc với Logger
         disableLog: {
-            info: false,
+            info: true,
             error: false,
             debug: false
         },
         // Làm việc với Auth
         loginRouteServer: '/login',
         logoutRouterServer: '/logout',
-        registerRouterServer : '/register',
+        registerRouterServer: '/register',
         loginTableName: 'Users'
     }).
     service('dataStorage', ['$collection', function ($collection) {

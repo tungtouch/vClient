@@ -10,8 +10,6 @@
 angular.module('vClientApp.logger', ['vClientApp.config'])
 
     .factory('$logger', ['appConfig', function (appConfig) {
-
-
         var _stringify = function (args) {
             var msg = '';
 

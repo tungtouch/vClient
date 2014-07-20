@@ -12,7 +12,6 @@ angular.module('vClientApp.fetchData', ['vClientApp.logger', 'vClientApp.restful
 
         $logger.moduleName = 'Fetch Data Factory';
 
-
         var fetchData;
 
 

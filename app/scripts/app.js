@@ -6,25 +6,38 @@ angular.module('vClientApp', [
     'ngSanitize',
     'ngRoute',
     'vFramework',
-    'ngCollection'
+    'ngCollection',
+    'ui.router'
 ])
-    .config(function ($routeProvider) {
-        $routeProvider
-            .when('/', {
+    .config(function ($stateProvider,$urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
+        $stateProvider
+            .state('main', {
+                url : '/main',
                 templateUrl: 'views/main.html',
-                controller: 'MainCtrl'
+                controller: 'MainCtrl',
+                resolve: {
+                    'AppLoad': ['appData', '$q', '$logger', '$rootScope', function (appData, $q, $logger, $rootScope) {
+                        var AppLoad = $q.defer();
+                        if (!$rootScope.statusLoaded) {
+                            appData.load().then(function (resp) {
+                                AppLoad.resolve(true);
+                            }, function () {
+                                AppLoad.reject(false);
+                            })
+                        } else {
+                            AppLoad.resolve(true);
+                        }
+                        return AppLoad.promise;
+                    }]
+                }
             })
-            .otherwise({
-                redirectTo: '/'
+            .state('loading', {
+                url : '/',
+                templateUrl: 'views/loading.html',
+                controller: 'loading'
             });
+
     }).run(['$rootScope', '$fetchData', 'dataStorage', function ($rootScope, $fetchData, dataStorage) {
-
-        $fetchData.getData('UserAuths', null, null, null, null).then(function (resp) {
-            dataStorage.Users.addAll(resp.all());
-            console.log('dataStorage.Users :', dataStorage.Users.all());
-        }, function (err) {
-            console.log('err : ', err);
-        });
-
-
+        $rootScope.statusLoaded = false;
     }])

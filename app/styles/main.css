@@ -1,16 +1,21 @@
 /* Space out content a bit */
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
-.container p{
-        font-size: 18px;
-   text-align: center;
+.container p {
+    font-size: 18px;
+    text-align: center;
 
 }
-.container span{
-   display: block;
-   text-align: center;
+
+.container span {
+    display: block;
+    text-align: center;
+}
+
+#inTurnFadingTextG {
+    margin: 0 auto;
 }
