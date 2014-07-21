@@ -10,7 +10,9 @@
     "angular-sanitize": "1.2.6",
     "angular-route": "1.2.6",
     "angular-ui-router": "~0.2.10",
-    "angular-collection": "~0.5.0"
+    "angular-collection": "~0.5.0",
+    "ng-file-upload": "~1.6.0",
+    "ng-file-upload-shim": "~1.6.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

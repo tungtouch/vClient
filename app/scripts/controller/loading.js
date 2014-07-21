@@ -8,6 +8,11 @@ angular.module('vClientApp').
             appData.load().then(function (resp) {
                 $rootScope.statusLoaded = true;
                 $state.go('main');
+                /*if (resp.Users == null) {
+                    alert('Không thể kết nối tới server xin vui lòng cấu hình lại mạng');
+                } else {
+                    $state.go('main');
+                }*/
             }, function (err) {
                 console.log('loading false');
             })

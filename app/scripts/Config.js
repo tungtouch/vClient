@@ -73,7 +73,7 @@ angular.module('vClientApp.config', [])
         defaultPass: '',
         name: 'iTaxi',
         apiHost: 'http://localhost:1212',
-        mediaHost: 'http://itaxi.vn:6969',
+        mediaHost: 'http://nodejs.vn:8080',
 
         // Làm việc với Logger
         disableLog: {

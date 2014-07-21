@@ -7,7 +7,8 @@ angular.module('vClientApp', [
     'ngRoute',
     'vFramework',
     'ngCollection',
-    'ui.router'
+    'ui.router',
+    'angularFileUpload'
 ])
     .config(function ($stateProvider,$urlRouterProvider) {
         $urlRouterProvider.otherwise('/');
