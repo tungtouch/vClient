@@ -77,7 +77,7 @@ angular.module('vClientApp.config', [])
 
         // Làm việc với Logger
         disableLog: {
-            info: true,
+            info: false,
             error: false,
             debug: false
         },
